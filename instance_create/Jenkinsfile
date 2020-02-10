@@ -12,7 +12,7 @@ pipeline {
          steps {
             sh "cd /var/lib/jenkins/workspace/Selenoid-pipeline/instance_create"
             sh "terraform init -input=false"
-            sh "terrafrom plan -lock=false"
+            sh "terraform plan -lock=false"
             sh "terraform apply -input=false -auto-approve"
             }
          }
