@@ -15,5 +15,12 @@ pipeline {
             sh "terraform apply -input=false -auto-approve"
             }
          }
+   }  
+      stages {
+      stage('Destroy the aws instance') {
+         steps {
+            sh "terraform destroy -target aws_instance.ubuntu_selenoid"
+            }
+         }
    }
 }
