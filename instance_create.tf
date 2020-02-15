@@ -2,6 +2,11 @@ provider "aws" {
   region     = "eu-central-1"
 }
 
+data "aws_eip" "by_allocation_id" {
+  id = "eipalloc-01a547fe7a23313a1"
+  instance = "${aws_instance.ubuntu_selenoid.id}"
+}
+
 resource "aws_instance" "ubuntu_selenoid" {
   ami                    = "ami-0b418580298265d5c"
   instance_type          = "t2.micro"
