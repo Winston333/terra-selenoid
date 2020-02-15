@@ -4,7 +4,11 @@ provider "aws" {
 
 data "aws_eip" "by_allocation_id" {
   id = "eipalloc-01a547fe7a23313a1"
-  instance = aws_instance.ubuntu_selenoid.id
+}
+
+resource "aws_eip_association" "eip_assoc" {
+  instance_id   = aws_instance.ubuntu_selenoid.id
+  allocation_id = aws_eip.by_allocation_id.id
 }
 
 resource "aws_instance" "ubuntu_selenoid" {
