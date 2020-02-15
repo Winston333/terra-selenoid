@@ -2,7 +2,7 @@ provider "aws" {
   region     = "eu-central-1"
 }
 
-data "aws_eip" "by_allocation_id" {
+resource "aws_eip" "by_allocation_id" {
     tags = {
     Name = "Selenoid_test"
   }
