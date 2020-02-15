@@ -4,7 +4,7 @@ provider "aws" {
 
 data "aws_eip" "by_allocation_id" {
   id = "eipalloc-01a547fe7a23313a1"
-  instance = "${aws_instance.ubuntu_selenoid.id}"
+  instance = aws_instance.ubuntu_selenoid.id
 }
 
 resource "aws_instance" "ubuntu_selenoid" {
