@@ -17,9 +17,9 @@ pipeline {
          }
     stage('Test suite is in progress') {
          steps {
-            sh "echo 'Test suite is started'"
-            sh "sleep 30"
-            sh "echo 'Tests are completed'"
+              catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
+              build job: "Autotests_run"                
+            }
             }
          }
       
