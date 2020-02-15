@@ -15,9 +15,17 @@ pipeline {
             sh "terraform apply -input=false -auto-approve"
             }
          }
-      stage('Destroy the aws instance') {
+    stage('Test suite is in progress') {
          steps {
-            sh "terraform destroy -target aws_instance.ubuntu_selenoid"
+            sh "echo "Test suite is started"
+            sh "sleep 30"
+            sh "echo "Tests are completed"
+            }
+         }
+      
+    stage('Destroy the aws instance') {
+         steps {
+            sh "terraform destroy -auto-approve -target aws_instance.ubuntu_selenoid"
             }
          }
    }
