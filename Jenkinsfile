@@ -14,7 +14,7 @@ pipeline {
             sh "terraform init -input=false"
             sh "terraform plan -lock=false"
             sh "terraform apply -input=false -auto-approve"
-            sh "export TF_VAR_ip=aws_instance_public_ip"
+            sh "$TF_VAR_ip=terraform output aws_instance_public_ip"
             sh "echo $TF_VAR_ip"
             }
          }
