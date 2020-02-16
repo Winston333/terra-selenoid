@@ -11,6 +11,7 @@ pipeline {
    stages {
       stage('Run the aws instance with selenoid') {
          steps {
+            sh "echo $TF_VAR_IP"
             sh "terraform init -input=false"
             sh "terraform plan -lock=false"
             sh "terraform apply -input=false -auto-approve"
