@@ -19,7 +19,7 @@ pipeline {
          steps {
               catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               build job: "Autotests_run", 
-                    parameters: [string(name: 'ip', value: String.valueOf(aws_instance_public_ip))]                
+                    parameters: [string(name: 'ip', value: String.valueOf(TF_VAR_ip))]                
             }                
             }
             
