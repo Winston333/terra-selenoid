@@ -13,7 +13,8 @@ pipeline {
             sh "terraform init -input=false"
             sh "terraform plan -lock=false"
             sh "terraform apply -input=false -auto-approve"
-            sh "terraform export TF_VAR_ip='0.0.0.0'"
+            sh "terraform export TF_VAR_ip=aws_instance_public_ip"
+            sh "echo $TF_VAR_ip"
             }
          }
     stage('Test suite is in progress') {
