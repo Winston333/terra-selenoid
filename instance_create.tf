@@ -20,6 +20,8 @@ resource "aws_instance" "ubuntu_selenoid" {
   user_data              = file("selenoid_install.sh")
 }
 
+export TF_VAR_ip='192.168.0.1'
+
 output "aws_instance_public_ip" {
   value = aws_eip_association.eip_assoc.public_ip
 }
