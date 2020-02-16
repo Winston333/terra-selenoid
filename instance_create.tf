@@ -25,8 +25,6 @@ output "aws_instance_public_ip" {
   value = aws_instance.ubuntu_selenoid.public_ip
 }
 
-export TF_VAR_IP="output aws_instance.my_server.ip"
-
 resource "aws_security_group" "selenoid_sg" {
   name        = "Selenoid security group"
   description = "Selenoid security group"
