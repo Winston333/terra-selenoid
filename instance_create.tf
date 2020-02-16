@@ -2,15 +2,9 @@ provider "aws" {
   region     = "eu-central-1"
 }
 
-resource "aws_eip" "by_allocation_id" {
-    tags = {
-    Name = "Selenoid_test"
-  }
-}
-
 resource "aws_eip_association" "eip_assoc" {
   instance_id   = aws_instance.ubuntu_selenoid.id
-  allocation_id = aws_eip.by_allocation_id.id
+  allocation_id = "eipalloc-09caedf7cff9271d4"
 }
 
 resource "aws_instance" "ubuntu_selenoid" {
