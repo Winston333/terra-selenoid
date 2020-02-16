@@ -22,7 +22,7 @@ pipeline {
                     parameters: [string(name: 'ip', value: String.valueOf(aws_instance_public_ip))]                
             }                
             }
-            }
+            
          }
       
     stage('Destroy the aws instance') {
