@@ -18,7 +18,9 @@ pipeline {
     stage('Test suite is in progress') {
          steps {
               catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
-              build job: "Autotests_run"                
+              build job: "Autotests_run", 
+                    parameters: [string(name: 'ip', value: String.valueOf(aws_instance_public_ip))]                
+            }                
             }
             }
          }
