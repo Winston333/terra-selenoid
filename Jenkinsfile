@@ -6,7 +6,6 @@ pipeline {
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         TF_IN_AUTOMATION      = '1'
         TF_VAR_IP = 'initial'
-
     } 
 
    stages {
@@ -16,8 +15,12 @@ pipeline {
             sh "terraform init -input=false"
             sh "terraform plan -lock=false"
             sh "terraform apply -input=false -auto-approve"
-            sh "export TF_VAR_IP=$(terraform output aws_instance_public_ip)"
+            sh 'terraform output aws_instance_public_ip > ip.txt'
+            script{
+               TF_VAR_IP = readFile('ip.txt').trim()
+            }
             sh "echo $TF_VAR_IP"
+            sleep 120
             }
          }
     stage('Test suite is in progress') {
