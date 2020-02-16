@@ -5,7 +5,7 @@ pipeline {
         AWS_ACCESS_KEY_ID     = credentials('AWS_ACCESS_KEY_ID')
         AWS_SECRET_ACCESS_KEY = credentials('AWS_SECRET_ACCESS_KEY')
         TF_IN_AUTOMATION      = '1'
-        TF_VAR_ip = 'initial'
+        TF_VAR_IP = 'initial'
     } 
 
    stages {
@@ -14,15 +14,15 @@ pipeline {
             sh "terraform init -input=false"
             sh "terraform plan -lock=false"
             sh "terraform apply -input=false -auto-approve"
-            sh "$TF_VAR_ip=terraform output aws_instance_public_ip"
-            sh "echo $TF_VAR_ip"
+            sh "$TF_VAR_IP=terraform output aws_instance_public_ip"
+            sh "echo $TF_VAR_IP"
             }
          }
     stage('Test suite is in progress') {
          steps {
               catchError(buildResult: 'SUCCESS', stageResult: 'FAILURE') {
               build job: "Autotests_run", 
-                    parameters: [string(name: 'ip', value: String.valueOf(TF_VAR_ip))]                
+                    parameters: [string(name: 'ip', value: String.valueOf(TF_VAR_IP))]                
             }                
             }
             
