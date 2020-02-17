@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_instance" "ubuntu_selenoid" {
   ami                    = "ami-0b418580298265d5c"
-  instance_type          = "t2.micro"
+  instance_type          = "t2.xlarge"
   key_name               = "Selenoid4"
   vpc_security_group_ids = [aws_security_group.selenoid_sg.id]
   user_data              = file("selenoid_install.sh")
